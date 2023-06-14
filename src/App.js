@@ -17,7 +17,7 @@ function App() {
       {/* <AppContext> */}
         <Header />
             <Routes>
-              <Route path="/" e lement={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/category/:id" element={<Category />} />
               <Route path="/product/:id" element={<SingleProduct />} />
             </Routes>
