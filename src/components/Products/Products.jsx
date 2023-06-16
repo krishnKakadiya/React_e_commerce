@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 import "./Products.scss";
-import Product from './Product/Product';
+import Product from "./Product/Product";
+// import Category from '../Category/CartCategory';
 
-const Products = () => {
+const Products = ({ innerPage, headingText }) => {
   return (
     <div className="products-container">
-
-    <div className='sec-heading'>
-      section heading
-          </div>
-          <div className="products">
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-          </div>
+      {!innerPage && <div className="sec-heading">{headingText}</div>}
+      <div className="products">
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
+
+        {/* <Category /> */}

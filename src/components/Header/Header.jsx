@@ -1,5 +1,6 @@
 import React,{useState, useEffect,} from "react";
 import "./Header.scss";
+import { Link } from "react-router-dom";
 
 import { TbSearch } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -27,9 +28,10 @@ const handleScroll = () => {
     <div className={`main-header ${scrolled ? 'sticky-header' : '' }`}>
       <div className="header-content">
         <ul className="left">
-          <li>Home</li> 
+          <Link to='/'>Home</Link> 
+          <Link to='/product/:id'>Singleproduct</Link>
           <li>About</li>
-          <li>Categories</li>
+          <Link to="/category/:id">Categories</Link>
         </ul>
         <div className="center">KNOXStore</div>
         <div className="right">

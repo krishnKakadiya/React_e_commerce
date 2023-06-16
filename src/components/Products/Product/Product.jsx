@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Product.scss";
-import Pro from "../../../assetes/product.jpg";
+import Pro from "../../../assetes/pink.jpg";
 
 
 
