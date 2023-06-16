@@ -27,3 +27,8 @@
         @content;
     }
 }
+@mixin responsive($min-width, $max-width) {
+    @media only screen and (min-width: 770px) and (max-width: 980px) {
+      @content;
+    }
+  }

@@ -11,11 +11,23 @@
         @include md {
             max-width: 1200px;
         }
+        @include responsive (768px, 980px) {
+            // max-width: 1200px;
+            // max-width: calc(100% - 100px);
+        
+           
+        }
         .single-product-page {
             display: flex;
             flex-direction: column;
             @include md {
                 flex-direction: row;
+            }
+            @include responsive (768px, 980px) {
+              flex-direction: row;
+               flex-wrap: wrap!important;
+               justify-content: center;
+               
             }
             .left {
                 width: 100%;
