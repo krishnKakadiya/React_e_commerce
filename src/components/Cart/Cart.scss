@@ -23,6 +23,7 @@
     background: white;
     position: relative;
     z-index: 1;
+    display: flex;
     flex-direction: column;
     animation: slideCartWindow 0.3s ease forwards;
 
@@ -70,8 +71,8 @@
         font-size: 120px;
         opacity: 0.1;
       }
-      span {
-      }
+    //   span {
+    //   }
       .return-cta {
         outline: 0;
         border: 0;
