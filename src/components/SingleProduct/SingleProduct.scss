@@ -10,6 +10,7 @@
         margin: 0 auto;
         @include md {
             max-width: 1200px;
+            
         }
         @include responsive (768px, 980px) {
             // max-width: 1200px;
@@ -27,6 +28,7 @@
               flex-direction: row;
                flex-wrap: wrap!important;
                justify-content: center;
+
                
             }
             .left {
@@ -35,7 +37,7 @@
                 flex-shrink: 0;
                 @include md {
                     width: 600px;
-                    height: 600px;
+                    height: 400px;
                 }
                 img {
                     width: 100%;
@@ -49,6 +51,7 @@
                 @include md {
                     padding: 0 35px;
                 }
+                
                 .name {
                     font-size: 20px;
                     line-height: 28px;

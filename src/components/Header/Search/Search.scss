@@ -1,0 +1,71 @@
+@import "../../../css-config/mixins.scss";
+
+.search-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: white;
+  transform: translateY(100%);
+  animation: slidesearch 0.5s ease forwards ;
+  .form-field {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 50px;
+    // border-bottom: 1 px solid rgba(157, 143, 143, 0.1)!important;
+    @include md {
+      padding: 20px 0;
+    }
+    input {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      font-style: 20px;
+      font-weight: 600;
+    //   outline: none!important;   
+    outline-color: rgba(157, 143, 143, 0.1);
+      bottom: none;
+      text-transform: uppercase;
+      @include md {
+        font-size: 40px;
+        height: 80px;
+      }
+    }
+    .close-btn{
+        position: absolute;
+        font-size: 25px;
+        right: 20px;
+        top: 50px;
+        transform: translateY(-50%);
+        
+        cursor: pointer;
+        @include md {
+            right: 40px;
+            font-size: 50px;
+        }
+    }
+  }
+  .search-result-content{
+
+
+    .search-results{
+
+        .search-result-item{
+            
+        }
+    }
+  }
+}
+
+@keyframes slidesearch {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
