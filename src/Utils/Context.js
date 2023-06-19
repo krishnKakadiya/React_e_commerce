@@ -1,15 +1,22 @@
-// import React,{ createContext } from "react";
+import { createContext, useState } from "react";
 
+ export const Context = createContext();
 
-// export const Context = createContext();
+const AppContext = ({children})=> {
+  const [categories, setCategories] = useState();
+  const [products, setProducts] = useState();
+ /*here we create which or those state we passed in child component globally */
+  return(
 
-// const AppContext = ({Children}) => {
+      <Context.Provider value={{
+        categories,
+        setCategories,
+        products,
+        setProducts,
+      }}>
+        {children}
+    </Context.Provider>
+      );
+};
 
-
-//     return<Context.Provider >
-//             {Children}
-//         </Context.Provider>
-    
-// }
-
-// export default AppContext;
+export default AppContext;

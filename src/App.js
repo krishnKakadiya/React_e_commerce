@@ -1,5 +1,6 @@
-import "./App.scss";
 
+import React from "react";
+import "./App.scss";
 /* laibrary*/
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -10,12 +11,14 @@ import SingleProduct from "./components/SingleProduct/SingleProduct";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Newsletter from "./components/Footer/Newsletter/Newsletter";
-// import AppContext from "./Utils/Context";
+import AppContext from "./Utils/Context";
 
 function App() {
+
+
   return (
     <Router>
-      {/* <AppContext> */}
+      <AppContext>
         <Header />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -24,9 +27,10 @@ function App() {
             </Routes>
             <Newsletter />
         <Footer />
-      {/* </AppContext> */}
+      </AppContext>
     </Router>
   );
 }
 
 export default App;
+
