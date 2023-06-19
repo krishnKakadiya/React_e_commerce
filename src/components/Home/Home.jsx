@@ -8,7 +8,7 @@ import { Context } from "../../Utils/Context";
 
 const Home = () => {
   const { categories, setCategories,products,setProducts } = useContext(Context);
-
+   console.log(categories);
   useEffect(() => {
     // getProducts();
     geCategoreis();
@@ -18,21 +18,19 @@ const Home = () => {
   /*here  fetchdatafromapi func take url show in api.js  */
 
   // const getProducts = () => {
-  //   fetchDataFromApi("/api/products?populate=*").then((response) => {
-  //     console.log(response);
-  //     setProducts(response);
-  //     // console.log("response:>>",response);
+  //   fetchDataFromApi("/api/prodcut?populate=*").then((res) => {
+  //     console.log(res);
+  //     setProducts(res);
   //   });
   // };
   
-  /*here show only like api/categories the imag not come we add ? like query paramerter for strapi may be is inbuild populate=* */
   const geCategoreis = () => {
-    fetchDataFromApi("/api/categories?populate=*").then((response) => {
-      console.log("Api res:>>",response);
-      setCategories(response);
-      const image = response?.data[0].attributes.img.data.attributes.url;
+    fetchDataFromApi("/api/categories?populate=*").then((res) => {
+      console.log("Api res:>>",res);
+      setCategories(res);
+      const image = res?.data[0].attributes.img.data.attributes.url;
       console.log("img:>>",image);
-      // console.log("response:>>",response);
+      // console.log("res:>>",response);
     });
   };  
   return (
@@ -50,3 +48,5 @@ const Home = () => {
 };
 
 export default Home;
+
+      /*here show only like api/categories the imag not come we add ? like query paramerter for strapi may be is inbuild populate=* */
