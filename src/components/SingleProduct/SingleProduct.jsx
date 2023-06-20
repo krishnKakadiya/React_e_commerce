@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useContext} from "react";
 // import "../../css-config/mixins.scss";
 import Prod from "../../assetes/pink.jpg";
 import "./SingleProduct.scss";
@@ -12,38 +12,65 @@ import {
   FaCartPlus,
 } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+
+
 import useFetch from "../../Hooks/useFetch";
+import Product from './../Products/Product/Product';
+import { Context } from "../../Utils/Context";
 
 const SingleProduct = () => {
+  const [quantity, setQuantity] = useState(1);
+ const {handleAddCart} = useContext(Context);
 
+  const increment =()=> {
+    setQuantity((prevState)=> prevState + 1 )
+  }
+  const decrement =()=> {
+    setQuantity((prevState)=> {
+      if ( prevState == 1) return 1;
+      return prevState - 1;
+      
+    } )
+  }
+ 
+  // if (!data) return;
   const {id}= useParams();
-  console.log("singleid:--------",id);
-
+  // console.log("singleid:--------",id);
+  
   const {data} = useFetch(`/api/prodcuts?populate=*&[filters][id]=${id}`)  /*here when use populate= for get meadia content use filter=upone fielid like here id on we run fileter then get id */
-console.log("single-------------------------->",data);
-// console.log("image",data?.data[0]?.attributes?.img?.data[0]?.attributes.url);
-console.log("image", data?.data?.[0]?.attributes?.img?.data?.[0]?.attributes?.url);
+  // console.log("single-------------------------->",data);
+  // console.log("image",data?.data[0]?.attributes?.img?.data[0]?.attributes.url);
+  const product = data?.data?.[0]?.attributes;
+// console.log("image", data?.data?.[0]?.attributes?.img?.data?.[0]?.attributes?.url);
+
+
+
+// const catId = product?.categories.data[0].attributes.id;
+const catId = product?.categories?.data[0]?.id;
+console.log("catID>>",catId);
+
+
   return (
     <div className="single-product-main-content">
       <div className="layout">
         <div className="single-product-page">
           <div className="left">
             <img src={
-                process.env.REACT_APP_STRIPE_APP_DEV_URL + data?.data?.[0]?.attributes?.img?.data?.[0]?.attributes?.url
+                process.env.REACT_APP_STRIPE_APP_DEV_URL + product?.img?.data?.[0]?.attributes?.url
             } alt="singleproducts" />
           </div>
           <div className="right">
-            <span className="name">{data?.data?.[0]?.attributes?.title}</span>
-            <span className="price"> {data?.data?.[0]?.attributes?.price}</span>
-            <span className="desc">{data?.data?.[0]?.attributes?.desc}</span>
+            <span className="name">{product?.title}</span>
+            <span className="price"> {product?.price}  &#8377;</span>
+            <span className="desc">{product?.desc}</span>
             <div className="cart-buttons">
               <div className="quantity-buttons">
-                <span>+</span>
-                <span>5</span>
-                <span>-</span>
+                <span onClick={decrement}>-</span>
+                <span>{quantity}</span>
+                <span onClick={increment}>+</span>
               </div>
-              <button className="add-to-cart-button">
-                <FaCartPlus size={20} />
+              <button className="add-to-cart-button" onClick={()=> handleAddCart(data.data[0], quantity)}>
+                <FaCartPlus size={20} /> 
                 Add to Cart
               </button>
             </div>
@@ -53,7 +80,7 @@ console.log("image", data?.data?.[0]?.attributes?.img?.data?.[0]?.attributes?.ur
             <div className="info-item">
               <span className="text-bold">
                 Categorey:
-                <span>headphones</span>
+                <span>{product?.categories?.data?.[0]?.attributes?.title}</span>
               </span>
               <span className="text-bold">
                 Share:
@@ -66,9 +93,10 @@ console.log("image", data?.data?.[0]?.attributes?.img?.data?.[0]?.attributes?.ur
                 </span>
               </span>
             </div>
-          </div>
+          </div>                      
         </div>
-        <RelatedProducts />
+        <RelatedProducts productId={id} categoryId={product?.categories?.data[0]?.id} />
+
       </div>
     </div>
   );

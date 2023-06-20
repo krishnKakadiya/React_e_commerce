@@ -7,12 +7,15 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
 import Cart from "../Cart/Cart";
 import Search from "./Search/Search";
+import { useNavigate } from "react-router-dom";
+
 
 const Header = () => {
 
   const [scrolled, setScrolled] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const navigate = useNavigate();
 
 const handleScroll = () => {
   const offset = window.scrollY;
@@ -36,12 +39,12 @@ const handleScroll = () => {
         <ul className="left">
           {/* <Link to='/'>Home</Link>  */}
           {/* <Link to='/product/:id'>Singleproduct</Link> */}
-          <li>home</li>
+          <li onClick={()=> navigate("/")}>home</li>
           <li>SingleProduct</li>
           <li>categories</li>
           {/* <Link to="/category/:id">Categories</Link> */}
         </ul>
-        <div className="center">KNOXStore</div>
+        <div className="center" onClick={()=> navigate("/")}>KNOXStore</div>
         <div className="right">
           <TbSearch onClick={()=> setShowSearch(true)}/>
           <AiOutlineHeart />
