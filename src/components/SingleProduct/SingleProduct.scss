@@ -36,12 +36,13 @@
                 background-color: rgba(0, 0, 0, 0.05);
                 flex-shrink: 0;
                 @include md {
-                    width: 600px;
+                    width: 550px;
                     height: 400px;
                 }
                 img {
                     width: 100%;
                     display: block;
+                    height: 100%;
                 }
             }
             .right {

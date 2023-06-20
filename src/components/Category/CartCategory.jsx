@@ -10,7 +10,7 @@ const  CartCategory = () => {
 
     const { data } = useFetch(`/api/prodcuts?populate=*&[filters][categories][id]=${id}`)
    
-     
+     console.log("CartCategory👍",data);
     return (
         <div className="category-main-content">
             <div className="layout">
