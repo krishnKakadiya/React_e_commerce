@@ -27,7 +27,7 @@ function App() {
             </Routes>
             <Newsletter />
         <Footer />
-      </AppContext>
+      </AppContext> 
     </Router>
   );
 }

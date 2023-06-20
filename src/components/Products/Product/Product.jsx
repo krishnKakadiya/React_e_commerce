@@ -4,19 +4,23 @@ import Pro from "../../../assetes/pink.jpg";
 
 
 
-const Product = () => {
+const Product = ({prodData , id}) => {
+  console.log("prod---->",prodData);
   return (
-    <div className='product-card'>
+    <div key={id} className='product-card'>
     <div className="thumbnail">
-     <img src={Pro} alt="" />
+     <img src={
+         process.env.REACT_APP_STRIPE_APP_DEV_URL +
+         prodData.img.data[0].attributes.url
+     } alt="" />
 
     </div>
       <div className="prod-details">
         <span className="name">
-          product name
+        {prodData.title}
         </span>
         <span className="price">
-          &#8377;899
+          &#8377;{prodData.price}
         </span>
       </div>
 

@@ -55,21 +55,23 @@ const Category = ({ categories }) => {
   const navigate = useNavigate();
   return (
     <div className="shop-by-category">
-      
       <div className="categories">
         {categories &&
           categories?.data?.map((item) => {
             return (
-              <div key={item.id} className="category">
-             
-                  <img
-                    src={
-                      process.env.REACT_APP_STRIPE_APP_DEV_URL +
-                      item?.attributes.img.data.attributes.url
-                    }
-                    alt="error"
-                  />
-                   <p></p>
+              <div
+                key={item.id}
+                className="category"
+                onClick={() => navigate(`/category/${item.id}`)}
+              >
+                <img
+                  src={
+                    process.env.REACT_APP_STRIPE_APP_DEV_URL +
+                    item?.attributes.img.data.attributes.url
+                  }
+                  alt="error"
+                />
+                <p></p>
               </div>
             );
           })}
@@ -80,7 +82,9 @@ const Category = ({ categories }) => {
 
 export default Category;
 
-{/* console.log('categories',categories) */}
+{
+  /* console.log('categories',categories) */
+}
 {
   /* <div className="category">
           <img src={Cat1} alt="" />
