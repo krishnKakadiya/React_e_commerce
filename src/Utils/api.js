@@ -30,7 +30,7 @@ const params = {
         Authorization: "bearer " + process.env.REACT_APP_STRIP_APP_KEY,
     },
 };
-console.log("url ----------->>",process.env.REACT_APP_STRIPE_APP_DEV_URL)
+// console.log("url ----------->>",process.env.REACT_APP_STRIPE_APP_DEV_URL)
 export const fetchDataFromApi = async (url) => {
     try {
         const { data } = await axios.get(

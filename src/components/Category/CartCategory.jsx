@@ -2,7 +2,10 @@
 // import useFetch from "../../hooks/useFetch";
 import Products from "../Products/Products";
 import "./CartCategory.scss";
+import useFetch from "../../Hooks/useFetch";
 const   CartCategory = () => {
+
+  
    
     return (
         <div className="category-main-content">

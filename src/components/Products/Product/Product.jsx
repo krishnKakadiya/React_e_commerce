@@ -5,8 +5,9 @@ import Pro from "../../../assetes/pink.jpg";
 
 
 const Product = ({prodData , id}) => {
-  console.log("prod---->",prodData);
+  // console.log("prod---->",prodData);
   return (
+    // console.log("++") &&
     <div key={id} className='product-card'>
     <div className="thumbnail">
      <img src={

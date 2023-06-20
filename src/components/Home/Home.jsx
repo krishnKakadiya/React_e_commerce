@@ -14,22 +14,23 @@ const Home = () => {
   useEffect(() => {
     getProducts();
     geCategoreis();
+    console.log("Apprunnig");
   }, []);
 
   /*here  fetchdatafromapi func take url show in api.js  */
 
   const getProducts = () => {
     fetchDataFromApi("/api/prodcuts?populate=*").then((res) => {
-      console.log("Prodcut----->:",res);
+      console.log("Prodcutres-->:",res);
       setProducts(res);
-      console.log('prodimge---------->',res.data[0].attributes.img.data[0].attributes.url);
+      // console.log('prodimge---------->',res.data[0].attributes.img.data[0].attributes.url);
     });
   }; 
 
   const geCategoreis = () => {
     fetchDataFromApi("/api/categories?populate=*").then((res) => {
       setCategories(res);
-      console.log("catres: -------- >>", res);
+      console.log("catres:", res);
       // const image = res?.data[0].attributes.img.data.attributes.url;
       // const image = res?.data[0].attributes.prodcuts.data[0].attributes.title;
       // console.log("img:>>",image);
