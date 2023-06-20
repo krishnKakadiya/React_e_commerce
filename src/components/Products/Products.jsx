@@ -4,6 +4,7 @@ import Product from "./Product/Product";
 // import Category from '../Category/CartCategory';
 
 const Products = ({ innerPage, headingText, products }) => {
+  console.log("products-------------", products);
   return (
     <div className="products-container">
       {!innerPage && <div className="sec-heading">{headingText}</div>}
@@ -13,7 +14,7 @@ const Products = ({ innerPage, headingText, products }) => {
         ))}
       </div>
       {/* <div className="products">
-        <Product />
+        <Product /> 
         <Product />
         <Product />
         <Product />
@@ -23,7 +24,7 @@ const Products = ({ innerPage, headingText, products }) => {
         <Product />
       </div> */}
     </div>
-  );
+  );  
 };
 
 export default Products;

@@ -11,8 +11,15 @@ import {
   FaPinterest,
   FaCartPlus,
 } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import useFetch from "../../Hooks/useFetch";
 
 const SingleProduct = () => {
+
+  const {id}= useParams();
+  console.log("singleid:--------",id);
+
+  const {single} = useFetch();
   return (
     <div className="single-product-main-content">
       <div className="layout">

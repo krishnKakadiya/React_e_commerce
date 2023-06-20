@@ -1,14 +1,16 @@
 import React from 'react';
 import "./Product.scss";
 import Pro from "../../../assetes/pink.jpg";
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Product = ({prodData , id}) => {
   // console.log("prod---->",prodData);
+  const navigate = useNavigate();
   return (
     // console.log("++") &&
-    <div key={id} className='product-card'>
+    <div key={id} className='product-card' onClick={()=> navigate('/product/' + id)}>
     <div className="thumbnail">
      <img src={
          process.env.REACT_APP_STRIPE_APP_DEV_URL +

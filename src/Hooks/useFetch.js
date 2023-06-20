@@ -16,7 +16,7 @@ const useFetch = (endpoint)=>{
         console.log("makeApicallfunc-------->",res);
     }
 
-    return {data};
+    return { data };
 }
 
 export default useFetch;    
