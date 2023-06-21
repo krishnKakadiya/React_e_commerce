@@ -4,7 +4,7 @@ import Product from "./Product/Product";
 // import Category from '../Category/CartCategory';
 
 const Products = ({ innerPage, headingText, products }) => {
-  console.log("products-------------", products);
+  // console.log("products-------------", products);
   return (
     <div className="products-container">
       {!innerPage && <div className="sec-heading">{headingText}</div>}

@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     getProducts();
     geCategoreis();
-    console.log("Apprunnig");
+    console.log("homejsx render");
   }, []);
 
   /*here  fetchdatafromapi func take url show in api.js  */
