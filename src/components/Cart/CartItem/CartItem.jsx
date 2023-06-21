@@ -32,13 +32,13 @@ console.log("handlecartItems.jsx:>>>>>>>>>>>>>>>>>>>>",cartItems);
                 onClick={()=> handleRemoveCart(item)}
               />
               <div className="quantity-buttons">
-                <span onClick={()=> handleCartProductQuantity("desc", item)}>
+                <span onClick={()=> handleCartProductQuantity("dec", item)}>
                   -
                 </span>
 
                 <span>{item.attributes.quantity}</span>
 
-                <span onClick={()=> handleCartProductQuantity("incre", item)}>
+                <span onClick={()=> handleCartProductQuantity("inc", item)}>
                   +
                 </span>
               </div>

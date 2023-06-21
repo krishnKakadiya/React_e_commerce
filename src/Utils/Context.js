@@ -71,7 +71,19 @@ const AppContext = ({ children }) => {
     setCartItems(items);
   };
 
-  const handleCartProductQuantity = (product, type) => {};
+  // const handleCartProductQuantity = (product, type) => {};
+
+  const handleCartProductQuantity = (type, product) => {
+    let items = [...cartItems];
+    let index = items?.findIndex((p) => p.id === product?.id);
+    if (type === "inc") {
+        items[index].attributes.quantity += 1;
+    } else if (type === "dec") {
+        if (items[index].attributes.quantity === 1) return;
+        items[index].attributes.quantity -= 1;
+    }
+    setCartItems(items);
+};
 
   useEffect(() => {
     handleAddCart(cartItems);
