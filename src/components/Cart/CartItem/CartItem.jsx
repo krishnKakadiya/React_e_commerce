@@ -5,60 +5,62 @@ import { MdClose } from "react-icons/md";
 import { Context } from "../../../Utils/Context";
 
 const CartItem = () => {
-  const {
-    cartItems,
-    handleRemoveCart,
-    handleCartProductQuantity,
-  } = useContext(Context);
+  const { cartItems, handleRemoveCart, handleCartProductQuantity } = useContext(Context);
+                                                                   
 
-console.log("handlecartItems.jsx:>>>>>>>>>>>>>>>>>>>>",cartItems);
+  console.log("handlecartItems.jsx:>>>>>>>>>>>>>>>>>>>>", cartItems);
 
-// console.log("cartItems:>>>>>>>>>>>>>>>>>>>>",id);
-   
-  return (  
+  // console.log("cartItems:>>>>>>>>>>>>>>>>>>>>",id);
+
+  return (
     <div className="cart-products">
       {cartItems.map((item) => (
-          <div key={item.id} className="cart-product">
-            <div className="image-container">
-              <img src={
-                 process.env.REACT_APP_STRIPE_APP_DEV_URL +
-                 item?.img?.data?.[0]?.attributes.url
-              } alt="" />
+        <div className="cart-product"
+        key={item?.['title']}
+        >
+          <div className="image-container">
+            <img
+              src={
+                process.env.REACT_APP_STRIPE_APP_DEV_URL +
+                item?.img?.data?.[0]?.attributes.url
+              }
+              alt=""
+            />
+          </div>
+          <div className="prod-details">
+            <span className="name">{item?.title}</span>
+            <MdClose
+              className="close-btn"
+              onClick={() => handleRemoveCart(item)}
+            />
+            <div className="quantity-buttons">
+              <span onClick={() => handleCartProductQuantity("dec", item)}>
+                -
+              </span>
+
+              <span>{item.attributes.quantity}</span>
+
+              <span onClick={() => handleCartProductQuantity("inc", item)}>
+                +
+              </span>
             </div>
-            <div className="prod-details">
-              <span className="name">{item?.title}</span>
-              <MdClose
-                className="close-btn"
-                onClick={()=> handleRemoveCart(item)}
-              />
-              <div className="quantity-buttons">
-                <span onClick={()=> handleCartProductQuantity("dec", item)}>
-                  -
-                </span>
-
-                <span>{item.attributes.quantity}</span>
-
-                <span onClick={()=> handleCartProductQuantity("inc", item)}>
-                  +
-                </span>
-              </div>
-              <div className="text">
-                <span>{item?.attributes?.quantity}</span>
-                <span>x</span>
-                {/* <span className="highlight">&#8377;899</span> */}
-                <span className="highlight">&#8377;{item?.attributes?.quantity * item?.price}</span>
-              </div>
+            <div className="text">
+              <span>{item?.attributes?.quantity}</span>
+              <span>x</span>
+              {/* <span className="highlight">&#8377;899</span> */}
+              <span className="highlight">&#8377;{item?.price}</span>
             </div>
           </div>
-        )
-      )}
+        </div>
+      ))}
     </div>
   );
 };
 
 export default CartItem;
 
-    {/* {CartItems?.map((item) => (
+{
+  /* {CartItems?.map((item) => (
         <div
             className="search-result-item"
             key={item.id}
@@ -106,4 +108,5 @@ export default CartItem;
                 </div>
             </div>
         </div>
-    ))} */}
+    ))} */
+}

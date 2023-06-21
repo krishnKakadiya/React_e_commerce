@@ -20,7 +20,7 @@ import { Context } from "../../Utils/Context";
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
 
-  const { handleAddCart } = useContext(Context);
+  const { handleAddToCart } = useContext(Context);
   
   const increment = () => {
     setQuantity((prevState) => prevState + 1);
@@ -35,9 +35,7 @@ const SingleProduct = () => {
   const { id } = useParams();
   // console.log("singleid:--------",id);
 
-  const { data } = useFetch(
-    `/api/prodcuts?populate=*&[filters][id]=${id}`
-  ); 
+  const { data } = useFetch(`/api/prodcuts?populate=*&[filters][id]=${id}`); 
   
   /*here when use populate= for get meadia content use filter=upone fielid like here id on we run fileter then get id */
 
@@ -81,7 +79,8 @@ const SingleProduct = () => {
               <button
                 className="add-to-cart-button"
                 onClick={() => {
-                  handleAddCart(product, quantity);
+                  handleAddToCart(product, quantity);
+                  // handleAddToCart(data?.data?.[0]?.attributes,product, quantity);
                   setQuantity(1);
                 }}
               >
