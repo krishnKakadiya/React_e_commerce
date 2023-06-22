@@ -19,4 +19,4 @@ const useFetch = (endpoint)=>{
     return { data };
 }
 
-export default useFetch;    
+export default useFetch   

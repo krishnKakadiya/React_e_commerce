@@ -1,4 +1,4 @@
-import React,{useState, useEffect,} from "react";
+import React,{useState, useEffect, useContext,} from "react";
 import "./Header.scss";
 import { Link } from "react-router-dom";
 
@@ -8,12 +8,14 @@ import { CgShoppingCart } from "react-icons/cg";
 import Cart from "../Cart/Cart";
 import Search from "./Search/Search";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../Utils/Context";
 
 
 const Header = () => {
 
+  const {cartCount, showCart, setShowCart} = useContext(Context);
+
   const [scrolled, setScrolled] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
 
@@ -50,13 +52,14 @@ const handleScroll = () => {
           <AiOutlineHeart />
           <span className="cart-icon" onClick={() => setShowCart(true)}>
             <CgShoppingCart />
-            <span>5</span>
+            {!!cartCount && <span>{cartCount}</span>}
           </span>
         </div> 
       </div>
     </header>
-    {showCart && <Cart setShowCart={setShowCart} />}
     {showSearch && <Search setShowSearch={setShowSearch} />}
+    {/* {showCart && <Cart />} */}
+    {showCart && <Cart setShowCart={setShowCart} />}
     </>
   );
 };

@@ -156,6 +156,7 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 export const Context = createContext();
 
@@ -166,6 +167,7 @@ const AppContext = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [cartSubTotal, setCartSubTotal] = useState(0);
+
     const location = useLocation();
 
     useEffect(() => {
@@ -187,25 +189,50 @@ const AppContext = ({ children }) => {
         console.log("subTotal:>>", subTotal);
     }, [cartItems]);
 
-    const handleAddToCart = (product, quantity) => {
+    // const handleAddToCart = (product, quantity) => {
       
+    //   console.log("handleAddproduct:>>>>>>", product);
+    //   console.log("handlequantity:>>>>>>", quantity);
+
+    //     let items = [...cartItems];
+
+    //     let index = items?.findIndex((p) => p.id === product?.id);
+    //     console.log('index', index)
+    //     if (index !== -1) {
+    //         items[index].attributes.quantity += quantity;
+    //     } else {
+    //         // product.attributes.quantity = quantity;
+    //         product.attributes = { quantity : quantity }
+    //         items = [...items, product];
+    //     }
+    //     setCartItems(items);
+    //     console.log('items', items)
+    // };
+      
+    const handleAddToCart = (product, quantity) => {
       console.log("handleAddproduct:>>>>>>", product);
       console.log("handlequantity:>>>>>>", quantity);
-
-        let items = [...cartItems];
-
-        let index = items?.findIndex((p) => p.id === product?.id);
-        console.log('index', index)
-        if (index !== -1) {
-            items[index].attributes.quantity += quantity;
-        } else {
-            // product.attributes.quantity = quantity;
-            product.attributes = { quantity : quantity }
-            items = [...items, product];
-        }
-        setCartItems(items);
-        console.log('items', items)
-    };
+  
+      let items = [...cartItems];
+  
+      let index = items.findIndex((p) => p.id === product.id);
+      console.log('index', index)
+  
+      if (index !== -1) {
+          // Item already exists in the cart, increase the quantity
+          items[index].attributes.quantity += quantity;
+      } else {
+          // Item doesn't exist in the cart, add it as a new item
+          const newItem = {
+              ...product,
+              attributes: { quantity: quantity,  id: uuidv4()}
+          };
+          items = [...items, newItem]
+      }
+      setCartItems(items);
+      console.log('items', items)
+  };
+  
 
     const handleRemoveCart = (product) => {
         let items = [...cartItems];
@@ -248,4 +275,4 @@ const AppContext = ({ children }) => {
     );
 };
 
-export default AppContext;
+export default AppContext
