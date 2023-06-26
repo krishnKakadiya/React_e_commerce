@@ -3,6 +3,8 @@ import React, { useState, useContext } from "react";
 import Prod from "../../assetes/pink.jpg";
 import "./SingleProduct.scss";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import { useLocation } from 'react-router-dom';
+
 import {
   FaFacebookF,
   FaTwitter,
@@ -14,10 +16,13 @@ import {
 import { useParams } from "react-router-dom";
 
 import useFetch from "../../Hooks/useFetch";
-import Product from "./../Products/Product/Product";
 import { Context } from "../../Utils/Context";
 
 const SingleProduct = () => {
+  // const location = useLocation();
+  // const imageProductName = location?.state?.imageProductName;
+  // console.log('imageProductNameasd', imageProductName);
+
   const [quantity, setQuantity] = useState(1);
 
   const { handleAddToCart } = useContext(Context);
@@ -79,7 +84,8 @@ const SingleProduct = () => {
               <button
                 className="add-to-cart-button"
                 onClick={() => {
-                  handleAddToCart(product, quantity);
+                  handleAddToCart(pro, quantity);
+                  // handleAddToCart(data?.data[0], quantity);
                   // handleAddToCart(data?.data?.[0]?.attributes,product, quantity);
                   setQuantity(1);
                 }}
@@ -90,7 +96,6 @@ const SingleProduct = () => {
             </div>
 
             <span className="divider" />
-
             <div className="info-item">
               <span className="text-bold">
                 Categorey:

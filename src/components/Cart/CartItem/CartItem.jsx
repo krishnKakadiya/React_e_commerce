@@ -16,12 +16,13 @@ const CartItem = () => {
     <div className="cart-products">
       {cartItems.map((item) => {
           
-           return( <div key={item.attributes.id} className="cart-product">
+           return( <div className="cart-product" key={item?.id} >
           <div className="image-container">
             <img
               src={
                 process.env.REACT_APP_STRIPE_APP_DEV_URL +
-                item?.img?.data?.[0]?.attributes.url
+                item?.attributes?.img?.data?.[0]?.attributes?.url
+                // item?.img?.data?.[0]?.attributes.url
               }
               alt=""
             />
@@ -47,7 +48,7 @@ const CartItem = () => {
               <span>{item?.attributes?.quantity}</span>
               <span>x</span>
               {/* <span className="highlight">&#8377;899</span> */}
-              <span className="highlight">&#8377;{item?.price}</span>
+              <span className="highlight">&#8377;{item?.attributes?.price}</span>
             </div>
           </div>
         </div>

@@ -156,13 +156,13 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 export const Context = createContext();
 
 const AppContext = ({ children }) => {
     const [categories, setCategories] = useState();
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState(); 
     const [showCart, setShowCart] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
@@ -183,57 +183,84 @@ const AppContext = ({ children }) => {
         let subTotal = 0;
         cartItems.map(
             (item) =>
-                (subTotal = item?.price * item?.attributes?.quantity)
+                (subTotal = item?.attributes?.price * item?.attributes?.quantity)
                 );
         setCartSubTotal(subTotal);
         console.log("subTotal:>>", subTotal);
     }, [cartItems]);
 
-    // const handleAddToCart = (product, quantity) => {
-      
-    //   console.log("handleAddproduct:>>>>>>", product);
-    //   console.log("handlequantity:>>>>>>", quantity);
-
-    //     let items = [...cartItems];
-
-    //     let index = items?.findIndex((p) => p.id === product?.id);
-    //     console.log('index', index)
-    //     if (index !== -1) {
-    //         items[index].attributes.quantity += quantity;
-    //     } else {
-    //         // product.attributes.quantity = quantity;
-    //         product.attributes = { quantity : quantity }
-    //         items = [...items, product];
-    //     }
-    //     setCartItems(items);
-    //     console.log('items', items)
-    // };
-      
     const handleAddToCart = (product, quantity) => {
+      
       console.log("handleAddproduct:>>>>>>", product);
       console.log("handlequantity:>>>>>>", quantity);
+
+        let items = [...cartItems];
+
+        let index = items?.findIndex((p) => p?.id === product?.id);
+        console.log('index', index)
+        if (index !== -1) {
+            items[index].attributes.quantity += quantity;
+        } else {
+            product.attributes.quantity = quantity;
+            // product.attributes = { quantity : quantity }
+            items = [...items, product];
+       console.log('items', items)
+        }
+        setCartItems(items);
+        console.log('handleitems', items)
+    };
+      
+//     const handleAddToCart = (product, quantity) => {
+//       console.log("handleAddproduct:>>>>>>", product);
+//       console.log("handlequantity:>>>>>>", quantity);
+     
+//       let items = [...cartItems];
+//       console.log('handle...cartItems', [...cartItems])
+     
+//       let index = items.findIndex((p) => p.id === product.id);
+//       console.log('handleindex', index)
   
-      let items = [...cartItems];
+//       if (index !== -1) {
+//           // Item already exists in the cart, increase the quantity
+//           items[index].attributes.quantity += quantity;
+//           console.log("handleunif");
+//       } else {
+//           // Item doesn't exist in the cart, add it as a new item
+//           const newItem = {
+//               ...product,
+//               attributes: { quantity: quantity}
+//             //   attributes: { quantity: quantity,  id: uuidv4()}
+//           };
+//           items = [...items, newItem]
+//           console.log('handlenewItem', [...items])
+//       }
+//       setCartItems(items);  
+//       console.log('handleitems', items)
+//   };
   
-      let index = items.findIndex((p) => p.id === product.id);
-      console.log('index', index)
-  
-      if (index !== -1) {
-          // Item already exists in the cart, increase the quantity
-          items[index].attributes.quantity += quantity;
-      } else {
-          // Item doesn't exist in the cart, add it as a new item
-          const newItem = {
-              ...product,
-              attributes: { quantity: quantity,  id: uuidv4()}
-          };
-          items = [...items, newItem]
-      }
-      setCartItems(items);
-      console.log('items', items)
-  };
+// const handleAddToCart = (product, quantity) => {
+//     console.log("handleAddproduct:>>>>>>", product);
+//     console.log("handlequantity:>>>>>>", quantity);
   
 
+//      // find indeax of product from cartItems arry//
+//     const index = cartItems.findIndex((p) => p.id === product.id);
+//     console.log('handleindex', index)
+  
+
+//     // check your product/item  already exist in cart or not
+//     const updatedItems = index !== -1
+//       ? cartItems.map((item) =>
+//           item.id === product.id
+//             ? { ...item, attributes: { ...item.attributes, quantity: item.attributes.quantity + quantity } }
+//             : item
+//         )
+//       : [...cartItems, { ...product, attributes: { quantity } }];
+  
+//     setCartItems(updatedItems);
+//     console.log('handleitems', updatedItems);
+//   };
+  
     const handleRemoveCart = (product) => {
         let items = [...cartItems];
         items = items?.filter((p) => p.id !== product?.id);
