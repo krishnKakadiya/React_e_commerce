@@ -156,11 +156,14 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { useLocation } from "react-router-dom";
+import {Toaster } from "react-hot-toast";
+import {RemoveToast, SuccessToast } from "../helper/toast";
 // import { v4 as uuidv4 } from 'uuid';
 
 export const Context = createContext();
 
 const AppContext = ({ children }) => {
+    
     const [categories, setCategories] = useState();
     const [products, setProducts] = useState(); 
     const [showCart, setShowCart] = useState(false);
@@ -200,11 +203,13 @@ const AppContext = ({ children }) => {
         console.log('index', index)
         if (index !== -1) {
             items[index].attributes.quantity += quantity;
+            SuccessToast("add quantity");
         } else {
             product.attributes.quantity = quantity;
             // product.attributes = { quantity : quantity }
             items = [...items, product];
-       console.log('items', items)
+            console.log('items', items)
+            SuccessToast("add new item in cart");
         }
         setCartItems(items);
         console.log('handleitems', items)
@@ -265,11 +270,12 @@ const AppContext = ({ children }) => {
         let items = [...cartItems];
         items = items?.filter((p) => p.id !== product?.id);
         setCartItems(items);
+       RemoveToast("Remove item from cart")
     };
 
     const handleCartProductQuantity = (type, product) => {
         let items = [...cartItems];
-        let index = items?.findIndex((p) => p.id === product?.id);
+        let index = items?.findIndex((p) => p.id === product?.id); /* add filter method make new array */
         if (type === "inc") {
             items[index].attributes.quantity += 1;
         } else if (type === "dec") {
@@ -280,6 +286,31 @@ const AppContext = ({ children }) => {
     };
 
     return (
+        <div>
+             <Toaster   position="top-left"
+  reverseOrder={false}
+  gutter={8}
+  containerClassName=""
+  containerStyle={{}}
+  toastOptions={{
+    // Define default options
+    className: '',
+    duration: 2000,
+    style: {
+      background: '#363636',
+      color: '#fff',
+    },
+
+    // Default options for specific types
+    success: {
+      duration: 2000,
+      theme: {
+        primary: 'green',
+        secondary: 'black',
+      },
+    },
+  }} />
+
         <Context.Provider
             value={{
                 products,
@@ -296,9 +327,10 @@ const AppContext = ({ children }) => {
                 handleCartProductQuantity,
                 cartSubTotal,
             }}
-        >
+            >
             {children}
         </Context.Provider>
+            </div>
     );
 };
 

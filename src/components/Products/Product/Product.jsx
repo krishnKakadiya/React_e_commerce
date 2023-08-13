@@ -18,7 +18,7 @@ const Product = ({ prodData, id }) => {
     // }}
     // onClick={()=> navigate('/product/' + id)}
   };
-  console.log("ImageProductName", ImageProductName);
+  // console.log("ImageProductName", ImageProductName);
   // console.log("prod---->",prodData);
   return (
     <div

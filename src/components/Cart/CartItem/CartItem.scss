@@ -89,8 +89,10 @@
     // }
     .cart-product{
         padding: 20px 15px;
+       max-width: 100%;
                 display: flex;
                 gap: 10px;
+             
         .image-container {
             background-color: rgba(0, 0, 0, 0.05);
             width: 60px;
@@ -127,7 +129,7 @@
             }
             svg {
                 position: absolute;
-                top: 0;
+                top: -4px;
                 right: 0;
                 cursor: pointer;
             }

@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect,useState } from "react";
 import "./App.scss";
 /* laibrary*/
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -14,12 +14,17 @@ import Newsletter from "./components/Footer/Newsletter/Newsletter";
 import AppContext from "./Utils/Context";
 
 function App() {
+  const [renderCount, setRenderCount] = useState(0);
 
-
+  useEffect(() => {
+    // Increment the render count on each render
+    setRenderCount(prevCount => prevCount+1);
+  },[]);
+  
   return (
     <Router>
       <AppContext>
-        <Header />
+        <Header render={renderCount} />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/category/:id" element={<CartCategory />} />
